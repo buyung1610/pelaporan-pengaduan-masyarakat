@@ -1,0 +1,21 @@
+<%- include('layout/header') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Laporan Pengaduan</h1><br><br>
+        <form action="/tanggapan/kirim/<%= pengaduan._id %>" method="POST">
+            <div class="mb-3">
+                <label for="tanggapanLaporan" class="form-label">Tanggapan</label>
+                <textarea class="form-control form-control-lg" id="tanggapanLaporan" name="tanggapanLaporan" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-control form-control-lg">Berikan Tanggapan</button>
+        </form>        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

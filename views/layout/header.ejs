@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .navbar-nav .nav-link {
+            cursor: pointer;
+            color: white;
+        }
+        .navbar-nav .nav-link:hover {
+            background-color: white; 
+            color: black !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container d-flex justify-content-between align-items-center">
+            <button class="btn btn-dark me-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                <i class="fas fa-bars"></i> Menu
+            </button>
+            <form action="/auth/logout" method="POST" style="display:inline;">
+                <button type="submit" class="nav-link text-white btn btn-link p-0 m-0"><i class="fas fa-sign-out-alt me-1"></i>Logout</button>
+            </form>
+        </div>             
+    </nav>
+
+    <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-white" id="sidebarLabel">Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <% if (user.role === 'masyarakat') { %>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li><br>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/pengaduan"><i class="fas fa-pencil-alt me-1"></i>Tulis Laporan Pengaduan</a>
+                    </li><br>
+                <% } else if (user.role === 'admin') { %>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/verifikasi/laporan"><i class="fas fa-clipboard-check me-1"></i>Verifikasi dan Validasi Laporan</a>
+                    </li><br>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/tanggapan"><i class="fas fa-comment-dots me-1"></i>Berikan Tanggapan Laporan</a>
+                    </li><br>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/cetak/laporan"><i class="fas fa-plus me-1"></i>Generate Pengaduan</a>
+                    </li><br>    
+                <% } else if (user.role === 'petugas') { %>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/verifikasi/laporan"><i class="fas fa-clipboard-check me-1"></i>Verifikasi dan Validasi Laporan</a>
+                    </li><br>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/tanggapan"><i class="fas fa-comment-dots me-1"></i>Berikan Tanggapan Laporan</a>
+                    </li><br>
+                <% } %>         
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js" integrity="sha512-oBvh3N+T/YtNxiBUKND60X/z5ge+2R7umOdA3yLBwLL3+JjDLvT9Bp7frfA3cSRXa/+LUntgFtv2m/WHKtl75g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-rypgEO9Io7SHKNpdzwl5G59M9BfoEDfbD1tnPQ7x54EzRb7M+OlxMJyDxN9WbArwoUZ8NlrFh6VvCnplDVAgiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<%- include('layout/header') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Laporan Pengaduan</h1>
+
+        <form action="/pengaduan/edit/<%= pengaduan._id %>" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="nik" class="form-label">NIK</label>
+                <input type="text" class="form-control form-control-lg" id="nik" name="nik" value="<%= user.nik %>" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="isiLaporan" class="form-label">Isi Laporan</label>
+                <textarea class="form-control form-control-lg" id="isiLaporan" name="isiLaporan" rows="4" required></textarea>
+            </div>            
+            <div class="mb-3">
+                <label for="image" class="form-label">Foto</label>
+                <input type="file" class="form-control form-control-lg" id="image" name="image" required/>
+            </div class="mb-3">
+            <button type="submit" class="btn btn-primary form-control form-control-lg">Ajukan Pengaduan</button>
+            
+        </form>
+    </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
